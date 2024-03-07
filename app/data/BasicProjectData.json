@@ -1,0 +1,177 @@
+[
+  {
+    "Id": 1,
+    "Description": "Basic project",
+    "LiftObject": {
+      "Dimensions": {
+        "Length": 1,
+        "Height": 3,
+        "Width": 2
+      },
+      "Weight": {
+        "Mass": 1,
+        "Factor": 1.05
+      },
+      "CogBox": {
+        "Position": {
+          "X": 1,
+          "Y": 2,
+          "Z": 3
+        },
+        "Dimensions": {
+          "Length": 0.1,
+          "Height": 0.3,
+          "Width": 0.2
+        }
+      },
+      "LiftPoints": [
+        {
+          "Id": 1,
+          "Position": {
+            "X": 1,
+            "Y": 2,
+            "Z": 3
+          }
+        },
+        {
+          "Id": 2,
+          "Position": {
+            "X": 1,
+            "Y": 2,
+            "Z": 3
+          }
+        },
+        {
+          "Id": 3,
+          "Position": {
+            "X": 1,
+            "Y": 2,
+            "Z": 3
+          }
+        },
+        {
+          "Id": 4,
+          "Position": {
+            "X": 1,
+            "Y": 2,
+            "Z": 3
+          }
+        }
+      ]
+    },
+    "Rigging": {
+      "Hooks": [
+        {
+          "Id": 1,
+          "Position": {
+            "X": 10,
+            "Y": 20,
+            "Z": 10
+          },
+          "Legs": [
+            {
+              "Id": 1,
+              "HookId": 1, 
+              "LiftPointId": 1
+            },
+            {
+              "Id": 2,
+              "HookId": 1,
+              "LiftPointId": 2
+            },
+            {
+              "Id": 3,
+              "HookId": 1,
+              "LiftPointId": 3
+            }
+          ]
+        }
+      ]
+    },
+    "Operations": [
+      {
+        "Id": 1,
+        "Location": 0
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "Description": "Basic project",
+    "LiftObject": {
+      "Dimensions": {
+        "Length": 1,
+        "Height": 3,
+        "Width": 2
+      },
+      "Weight": {
+        "Mass": 1,
+        "Factor": 1.05
+      },
+      "CogBox": {
+        "Position": {
+          "X": 1,
+          "Y": 2,
+          "Z": 3
+        },
+        "Dimensions": {
+          "Length": 0.1,
+          "Height": 0.3,
+          "Width": 0.2
+        }
+      },
+      "LiftPoints": [
+        {
+          "Id": 1,
+          "Position": {
+            "X": 1,
+            "Y": 2,
+            "Z": 3
+          }
+        },
+        {
+          "Id": 2,
+          "Position": {
+            "X": 1,
+            "Y": 2,
+            "Z": 3
+          }
+        },
+        {
+          "Id": 3,
+          "Position": {
+            "X": 1,
+            "Y": 2,
+            "Z": 3
+          }
+        },
+        {
+          "Id": 4,
+          "Position": {
+            "X": 1,
+            "Y": 2,
+            "Z": 3
+          }
+        },
+        {
+          "Id": 5,
+          "Position": {
+            "X": 1,
+            "Y": 2,
+            "Z": 3
+          }
+        }
+
+      ]
+    },
+    "Rigging": {
+      "Hooks": []
+    },
+    "Operations": [
+      {
+        "Id": 1,
+        "Location": 0
+      }
+    ]
+  }
+]
