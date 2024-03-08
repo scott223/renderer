@@ -4,9 +4,9 @@
     "Description": "Basic inshore one hook three leg lift",
     "LiftObject": {
       "Dimensions": {
-        "Length": 20,
+        "Length": 30,
         "Height": 20,
-        "Width": 10
+        "Width": 30
       },
       "Position": {
         "X": 0,
@@ -33,7 +33,7 @@
         {
           "Id": 1,
           "Position": {
-            "X": -8,
+            "X": -10,
             "Y": 10,
             "Z": 0
           }
@@ -41,9 +41,9 @@
         {
           "Id": 2,
           "Position": {
-            "X": 2,
+            "X": 10,
             "Y": 10,
-            "Z": 20
+            "Z": 10
           }
         },
         {
