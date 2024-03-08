@@ -1,60 +1,52 @@
 [
   {
     "Id": 1,
-    "Description": "Basic project",
+    "Description": "Basic inshore one hook three leg lift",
     "LiftObject": {
       "Dimensions": {
-        "Length": 1,
-        "Height": 3,
-        "Width": 2
+        "Length": 20,
+        "Height": 20,
+        "Width": 10
       },
       "Weight": {
-        "Mass": 1,
+        "Mass": 1000,
         "Factor": 1.05
       },
       "CogBox": {
         "Position": {
-          "X": 1,
-          "Y": 2,
-          "Z": 3
+          "X": 10,
+          "Y": 10,
+          "Z": 5
         },
         "Dimensions": {
           "Length": 0.1,
-          "Height": 0.3,
-          "Width": 0.2
+          "Height": 0.1,
+          "Width": 0.1
         }
       },
       "LiftPoints": [
         {
           "Id": 1,
           "Position": {
-            "X": 1,
-            "Y": 2,
-            "Z": 3
+            "X": 0,
+            "Y": 10,
+            "Z": 0
           }
         },
         {
           "Id": 2,
           "Position": {
-            "X": 1,
-            "Y": 2,
-            "Z": 3
+            "X": 10,
+            "Y": 10,
+            "Z": 20
           }
         },
         {
           "Id": 3,
           "Position": {
-            "X": 1,
-            "Y": 2,
-            "Z": 3
-          }
-        },
-        {
-          "Id": 4,
-          "Position": {
-            "X": 1,
-            "Y": 2,
-            "Z": 3
+            "X": 20,
+            "Y": 10,
+            "Z": 0
           }
         }
       ]
@@ -71,7 +63,7 @@
           "Legs": [
             {
               "Id": 1,
-              "HookId": 1, 
+              "HookId": 1,
               "LiftPointId": 1
             },
             {
@@ -161,7 +153,6 @@
             "Z": 3
           }
         }
-
       ]
     },
     "Rigging": {
