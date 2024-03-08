@@ -19,6 +19,7 @@ export interface LiftObject {
     Dimensions: Dimensions;
     Weight: Weight;
     CogBox: CogBox;
+    Position: Position;
     LiftPoints: LiftPoint[];
 }
 

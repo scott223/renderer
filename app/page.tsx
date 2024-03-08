@@ -1,39 +1,14 @@
 "use client"; // This is a client component 👈🏽
+import React, { useRef, useState, useEffect } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { Stats, OrbitControls } from '@react-three/drei'
 
-import { createRoot } from 'react-dom/client'
-import React, { useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Convert, Dimensions, Project } from './project';
-import { read } from 'fs';
-
-
-// Make the `request` function generic
-// to specify the return data type:
-function getProjects(
-
-  config: RequestInit = {}
-
-  // This function is async, it will return a Promise:
-): Promise<Project[]> {
-
-  // Inside, we call the `fetch` function with 
-  // a URL and config given:
-  return fetch('https://raw.githubusercontent.com/scott223/renderer/main/app/data/projects.json', config)
-    // When got a response call a `json` method on it
-    .then((response) => response.json())
-    // and return the result data converted to 
-    .then((data) => {
-      const projects = Convert.toProject(JSON.stringify(data));
-      return projects;
-    });
-
-  // We also can use some post-response
-  // data-transformations in the last `then` clause.
-}
+import { Convert, Position, Dimensions, Project } from './project';
 
 const Box = ({
   dimensions
 }: {
+  position: Position,
   dimensions: Dimensions
 }) => {
   // This reference will give us direct access to the mesh
@@ -43,13 +18,9 @@ const Box = ({
   return (
     <mesh
       position={[0, 0, 0]}>
-      <boxGeometry args={[dimensions.Height, dimensions.Length, dimensions.Width]} />
+      <boxGeometry args={[dimensions.Length, dimensions.Height, dimensions.Width]} />
     </mesh>
   )
-}
-
-interface IProject {
-  project: Project
 }
 
 const LiftObjectViewer = ({
@@ -58,22 +29,42 @@ const LiftObjectViewer = ({
   project: Project
 }) => {
   return (
-    <Canvas>
+    <Canvas camera={{ fov: 75, position: [40, 40, 40] }}>
 
       <ambientLight intensity={Math.PI / 2} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
+      <spotLight position={[30, 30, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
 
-      <Box dimensions={project.LiftObject.Dimensions} />
+      {(project != undefined) && <Box position={project.LiftObject.Position} dimensions={project.LiftObject.Dimensions} />}
 
-      <axesHelper args={[5]} />
+      <axesHelper args={[20]} />
+      <OrbitControls enablePan={false} />
+      <Stats />
     </Canvas>
   );
 }
 
-export default async function Home() {
-  const projects: Project[] = await getProjects();
-  console.log(projects);
+export default function Home() {
+
+  // State to hold fetched data
+  const [projects, setProjects] = useState<Project[]>([]);
+  const BASE_URL = "https://raw.githubusercontent.com/scott223/renderer/main/app/data/projects.json";
+
+  useEffect(() => {
+
+    // Fetch data using Promise with the Fetch API
+    const fetchUsingPromiseWithFetchApi = () => {
+      fetch(BASE_URL) // Fetch data based on the current page
+        .then((response) => response.json()) // Parse the response as JSON
+        .then((data) => {
+          setProjects(Convert.toProject(JSON.stringify(data))); // Set the fetched data
+        });
+    };
+
+    // Trigger fetching method on component mount
+    fetchUsingPromiseWithFetchApi();
+
+  }, []); // Run the effect only once on component mount
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

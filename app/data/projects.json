@@ -8,6 +8,11 @@
         "Height": 20,
         "Width": 10
       },
+      "Position": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
       "Weight": {
         "Mass": 1000,
         "Factor": 1.05
@@ -95,6 +100,11 @@
         "Length": 1,
         "Height": 3,
         "Width": 2
+      },
+      "Position": {
+        "X": 0,
+        "Y": 10,
+        "Z": 0
       },
       "Weight": {
         "Mass": 1,
