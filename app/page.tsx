@@ -1,11 +1,13 @@
 "use client"; // This is a client component 👈🏽
 import React, { useRef, useState, useEffect } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { Stats, OrbitControls, Edges } from '@react-three/drei'
 
-import { Convert, Position, Dimensions, Project } from './project';
+import { Canvas } from '@react-three/fiber'
+import { Stats, OrbitControls, Edges, GizmoHelper, GizmoViewport } from '@react-three/drei'
+
+import { Convert, Position, Dimensions, Project, LiftPoint } from './project';
 
 const Box = ({
+  position,
   dimensions
 }: {
   position: Position,
@@ -23,11 +25,31 @@ const Box = ({
     </mesh>
   )
 }
-const LiftObjectViewer = ({
+
+const RenderLiftPoints = ({
+  liftpoints
+}: {
+  liftpoints: LiftPoint[]
+}) => {
+
+  const liftPointList = liftpoints.map(
+    liftpoint => <mesh
+      position={[liftpoint.Position.X, liftpoint.Position.Y, liftpoint.Position.Z]}>
+      <coneGeometry args={[1, 2, 8]} />
+      <meshNormalMaterial />
+      <Edges />
+    </mesh>);
+
+  return liftPointList;
+
+}
+
+const ProjectViewer = ({
   project
 }: {
   project: Project
 }) => {
+
   return (
     <Canvas
       camera={{ fov: 75, position: [40, 40, 40] }}
@@ -38,8 +60,13 @@ const LiftObjectViewer = ({
 
       {(project != undefined) && <Box position={project.LiftObject.Position} dimensions={project.LiftObject.Dimensions} />}
 
-      <axesHelper args={[20]} />
-      <OrbitControls enablePan={false} />
+      {(project != undefined) && <RenderLiftPoints liftpoints={project.LiftObject.LiftPoints} />}
+
+      <GizmoHelper alignment="bottom-right" margin={[100, 100]}>
+        <GizmoViewport labelColor="white" axisHeadScale={1} />
+      </GizmoHelper>
+
+      <OrbitControls makeDefault enablePan={false} />
       <Stats />
     </Canvas >
   );
@@ -70,7 +97,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="border-solid border-2 border-indigo-600 w-full h-screen">
-        <LiftObjectViewer project={projects[0] as Project} />
+        <ProjectViewer project={projects[0] as Project} />
       </div>
     </main>
   );
