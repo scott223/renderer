@@ -17,9 +17,9 @@ export interface Project {
 
 export interface LiftObject {
     Dimensions: Dimensions;
+    Position: Position;
     Weight: Weight;
     CogBox: CogBox;
-    Position: Position;
     LiftPoints: LiftPoint[];
 }
 
@@ -245,6 +245,7 @@ const typeMap: any = {
     ], false),
     "LiftObject": o([
         { json: "Dimensions", js: "Dimensions", typ: r("Dimensions") },
+        { json: "Position", js: "Position", typ: r("Position") },
         { json: "Weight", js: "Weight", typ: r("Weight") },
         { json: "CogBox", js: "CogBox", typ: r("CogBox") },
         { json: "LiftPoints", js: "LiftPoints", typ: a(r("LiftPoint")) },

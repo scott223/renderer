@@ -1,7 +1,7 @@
 "use client"; // This is a client component 👈🏽
 import React, { useRef, useState, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { Stats, OrbitControls } from '@react-three/drei'
+import { Stats, OrbitControls, Edges } from '@react-three/drei'
 
 import { Convert, Position, Dimensions, Project } from './project';
 
@@ -19,28 +19,29 @@ const Box = ({
     <mesh
       position={[0, 0, 0]}>
       <boxGeometry args={[dimensions.Length, dimensions.Height, dimensions.Width]} />
+      <Edges />
     </mesh>
   )
 }
-
 const LiftObjectViewer = ({
   project
 }: {
   project: Project
 }) => {
   return (
-    <Canvas camera={{ fov: 75, position: [40, 40, 40] }}>
+    <Canvas
+      camera={{ fov: 75, position: [40, 40, 40] }}
+      shadows>
 
       <ambientLight intensity={Math.PI / 2} />
       <spotLight position={[30, 30, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-      <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
 
       {(project != undefined) && <Box position={project.LiftObject.Position} dimensions={project.LiftObject.Dimensions} />}
 
       <axesHelper args={[20]} />
       <OrbitControls enablePan={false} />
       <Stats />
-    </Canvas>
+    </Canvas >
   );
 }
 
@@ -67,8 +68,8 @@ export default function Home() {
   }, []); // Run the effect only once on component mount
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="border-solid border-2 border-indigo-600 w-1/2 h-full">
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <div className="border-solid border-2 border-indigo-600 w-full h-screen">
         <LiftObjectViewer project={projects[0] as Project} />
       </div>
     </main>
